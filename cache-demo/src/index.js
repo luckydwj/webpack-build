@@ -3,6 +3,7 @@
  */
 import _ from "lodash";
 // import Print from "./print";
+import * as demoNumbers from '../../library-demo/dist/demo-numbers'
 function getComponent() {
   const element = document.createElement("div");
   const btn = document.createElement("button");
@@ -11,10 +12,12 @@ function getComponent() {
 
   btn.innerHTML = "Click me sdfdsf";
   // element.onclick = Print.bind(null, "Hello webpack!");
-  // btn.onclick = async function () {
-  //   const { default: print } = await import(/*webpackPrefetch:true*/ "./print");
-  //   print();
-  // };
+  btn.onclick =  function () {
+    // const { default: print } = await import(/*webpackPrefetch:true*/ "./print");
+    // print();
+    var a=demoNumbers.wordToNum('Two');
+    console.log(a)
+  };
 
   element.appendChild(btn);
 
