@@ -2,9 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
+    <script>
+        function getCookie(name) {
+            var prefix = name + "="
+            var start = document.cookie.indexOf(prefix)
+
+            if (start == -1) {
+                return null;
+            }
+
+            var end = document.cookie.indexOf(";", start + prefix.length)
+            if (end == -1) {
+                end = document.cookie.length;
+            }
+
+            var value = document.cookie.substring(start + prefix.length, end)
+            return unescape(value);
+        }
+        window.onload = function(){
+           var aa=getCookie("webNamea")
+            console.log("====a页面=====",aa)
+            var bb=getCookie("webNameb")
+            console.log("====a页面=====",bb)
+        }
+    </script>
 </head>
 <body>
-$END$
+<script>
+    document.cookie = 'webNamea="a页面"'+';path=/demo/a.html'
+</script>
+页面a
 </body>
 </html>
