@@ -3,24 +3,29 @@
  */
 const path = require("path");
 module.exports = {
+  //entry: {
+  //  share: {
+  //    import: "./src/share.js",
+  //    filename: "share.js",
+  //  },
+  //  demo1: {
+  //    import: "./src/demo1.js",
+  //    filename: "demo1.js",
+  //    dependOn: "share",
+  //  },
+  //  demo: {
+  //    import: "./src/demo.js",
+  //    filename: "demo.js",
+  //    dependOn: "share",
+  //  },
+  //},
   entry: {
-    share: {
-      import: "./src/share.js",
-      filename: "share.js",
-    },
-    demo1: {
-      import: "./src/demo1.js",
-      filename: "demo1.js",
-      dependOn: "share",
-    },
-    demo: {
-      import: "./src/demo.js",
-      filename: "demo.js",
-      dependOn: "share",
-    },
+    demo: "./src/demo.js",
+    demo1: "./src/demo1.js",
   },
   output: {
-    filename: "main.js",
+    filename: "[name][hash].bundle.js",
     path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
   },
 };
