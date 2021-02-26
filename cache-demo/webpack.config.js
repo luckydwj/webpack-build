@@ -8,6 +8,7 @@ module.exports = {
   // devServer: {
   //   contentBase: "./dist",
   // },
+  devtool:"source-map",
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new HtmlWebpackPlugin({

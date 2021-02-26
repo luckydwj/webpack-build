@@ -1,17 +1,10 @@
 import * as _ from 'lodash'
+import test from 'xyz/bb.js'
 function component() {
     const element = document.createElement('div');
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    test()
     return element;
 }
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        debugger
-        navigator.serviceWorker.register('/service-worker.js').then(registration => {
-            console.log('SW registered: ', registration);
-        }).catch(registrationError => {
-            console.log('SW registration failed: ', registrationError);
-        });
-    });
-}
+
 document.body.appendChild(component());

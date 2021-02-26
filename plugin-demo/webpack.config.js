@@ -1,14 +1,15 @@
-const EndWebpackPlugin =require('./plugin/my-plugin')
+const MyResolverPlugin=require('./plugin/MyResolverPlugin')
+const path = require('path');
 module.exports = {
-    entry:{
-        index:'./src/index.js',
+    context: path.resolve(__dirname),
+    entry: './src/index.js',
+    devtool: 'inline-source-map',
+    resolve: {
+        extensions: ['.js' ],
+        plugins:[new MyResolverPlugin('resolve','described-resolve')]
     },
-
-    plugins:[
-        new EndWebpackPlugin((stats) => {
-            console.info('已成功构建',stats)
-        }, (err) => {
-            console.error('构建失败',err);
-        })
-    ]
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+    },
 };

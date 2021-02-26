@@ -1,5 +1,4 @@
 const path = require('path');
-const WorkboxPlugin = require('workbox-webpack-plugin');
 module.exports = {
     entry: './src/index.ts',
     devtool: 'inline-source-map',
@@ -14,17 +13,14 @@ module.exports = {
     },
     resolve: {
         extensions: [ '.tsx', '.ts', '.js' ],
+        alias:{
+           xyz$:path.resolve(__dirname,'src/utilities/bb.ts'),
+           Templates:path.resolve(__dirname,'src/templates/')
+        },
+        plugins:[]
     },
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
-    plugins:[
-        new WorkboxPlugin.GenerateSW({
-            // 这些选项帮助快速启用 ServiceWorkers
-            // 不允许遗留任何“旧的” ServiceWorkers
-            clientsClaim: true,
-            skipWaiting: true,
-        }),
-    ]
 };
