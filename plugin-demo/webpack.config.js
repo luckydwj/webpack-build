@@ -4,6 +4,10 @@ module.exports = {
     context: path.resolve(__dirname),
     entry: './src/index.js',
     devtool: 'inline-source-map',
+    mode:'development',
+    optimization: {
+        usedExports: true,
+    },
     resolve: {
         extensions: ['.js' ],
         plugins:[new MyResolverPlugin('resolve','resolve')]

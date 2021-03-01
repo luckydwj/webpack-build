@@ -36,7 +36,6 @@ class MyResolverPlugin {
         resolver
             .getHook(this.source)
             .tapAsync('MyResolverPlugin', (request, resolveContext, callback) => {
-                console.log("==========requestaaa=======",request)
                 const innerRequest = request.request || request.path
                 if (!innerRequest || !request.context.issuer) return callback()
                 if (!path.extname(innerRequest)) {
@@ -60,9 +59,7 @@ class MyResolverPlugin {
                     const obj = Object.assign({}, request, {
                         request: newRequestStr
                     })
-                    console.log("====obj========",obj)
                     return resolver.doResolve(target, obj, 'resolve multi platform file path', resolveContext, (err, result) => {
-                        console.log("======erraaaaa=======",err)
                         if (err) return callback(err)
 
                         if (result === undefined) return callback(null, null)
