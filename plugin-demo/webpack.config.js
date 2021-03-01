@@ -6,7 +6,7 @@ module.exports = {
     devtool: 'inline-source-map',
     resolve: {
         extensions: ['.js' ],
-        plugins:[new MyResolverPlugin('resolve','described-resolve')]
+        plugins:[new MyResolverPlugin('resolve','resolve')]
     },
     output: {
         filename: 'bundle.js',

@@ -32,28 +32,12 @@ class MyResolverPlugin {
     }
 
     apply(resolver) {
-     // const target = resolver.ensureHook(this.target)
-     //  resolver
-     //        .getHook(this.source)
-     //        .tapAsync('MyResolverPlugin', (request, resolveContext, callback) => {
-     //            // const obj={request:'./opg/opg.aa.js'}
-     //            // Object.assign({}, request, obj)
-     //            console.log("=======aaaa=====",request)
-     //            return resolver.doResolve(target, request, 'resolve multi platform file path', resolveContext, (err, result) => {
-     //                console.log("=======err====",err)
-     //                if (err) return callback(err)
-     //
-     //                if (result === undefined) return callback(null, null)
-     //                return callback(null, result)
-     //            })
-     //            callback()
-     //        })
         const target = resolver.ensureHook(this.target)
         resolver
             .getHook(this.source)
             .tapAsync('MyResolverPlugin', (request, resolveContext, callback) => {
+                console.log("==========requestaaa=======",request)
                 const innerRequest = request.request || request.path
-                console.log("========aaaa=====",request)
                 if (!innerRequest || !request.context.issuer) return callback()
                 if (!path.extname(innerRequest)) {
                     let srcRequest
@@ -70,13 +54,13 @@ class MyResolverPlugin {
                     if (/node_modules/.test(srcRequest) && !this.includes(srcRequest)) {
                         return callback()
                     }
-                    console.log("=======srcRequest=====",srcRequest)
+
                     const newRequestStr = this.resolveMainFilePath(srcRequest)
-                    console.log("============newRequestStr=======",newRequestStr)
                     if (newRequestStr === innerRequest) return callback()
                     const obj = Object.assign({}, request, {
                         request: newRequestStr
                     })
+                    console.log("====obj========",obj)
                     return resolver.doResolve(target, obj, 'resolve multi platform file path', resolveContext, (err, result) => {
                         console.log("======erraaaaa=======",err)
                         if (err) return callback(err)
