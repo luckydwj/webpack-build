@@ -7,18 +7,18 @@ class MyResolverPlugin {
     }
    resolveMainFilePath (p, extArrs = ['.js', '.jsx','.ts', '.tsx']) {
         const realPath = p
-        const taroEnv = process.env.TARO_ENV
+        const tagEnv = process.env.CI_BUILD_TAG
         for (let i = 0; i < extArrs.length; i++) {
             const item = extArrs[i]
-            if (taroEnv) {
-                if (fs.existsSync(`${p}.${taroEnv}${item}`)) {
-                    return `${p}.${taroEnv}${item}`
+            if (tagEnv) {
+                if (fs.existsSync(`${p}.${tagEnv}${item}`)) {
+                    return `${p}.${tagEnv}${item}`
                 }
-                if (fs.existsSync(`${p}${path.sep}index.${taroEnv}${item}`)) {
-                    return `${p}${path.sep}index.${taroEnv}${item}`
+                if (fs.existsSync(`${p}${path.sep}index.${tagEnv}${item}`)) {
+                    return `${p}${path.sep}index.${tagEnv}${item}`
                 }
-                if (fs.existsSync(`${p.replace(/\/index$/, `.${taroEnv}/index`)}${item}`)) {
-                    return `${p.replace(/\/index$/, `.${taroEnv}/index`)}${item}`
+                if (fs.existsSync(`${p.replace(/\/index$/, `.${tagEnv}/index`)}${item}`)) {
+                    return `${p.replace(/\/index$/, `.${tagEnv}/index`)}${item}`
                 }
             }
             if (fs.existsSync(`${p}${item}`)) {
